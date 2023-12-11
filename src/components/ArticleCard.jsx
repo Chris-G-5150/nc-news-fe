@@ -7,7 +7,7 @@ export default function ArticleCard({ article }) {
         <Link to={`/articles/${article.article_id}`}>
             <div className="article_card_container">
                 <img
-                    className="article_image"
+                    className="article_card_image"
                     src={article.article_img_url}
                     alt="article image"
                 />

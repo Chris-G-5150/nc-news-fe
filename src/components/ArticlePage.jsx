@@ -14,7 +14,6 @@ export default function ArticlePage() {
         axios
             .get(`https://nc-news-u90o.onrender.com/api/articles/${article_id}`)
             .then((response) => {
-                console.log(response.data, ".response data");
                 return response.data;
             })
             .then((data) => {
@@ -34,6 +33,10 @@ export default function ArticlePage() {
                 
             })
     }, []);
+
+    if (isLoading){
+        return (<p>Loading</p>)
+    }
 
     return (
         <>
