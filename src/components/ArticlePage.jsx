@@ -40,21 +40,30 @@ export default function ArticlePage() {
 
     return (
         <>
+        <section className="article_page_container">
+            
             <img src={article.article_img_url} alt="article image" />
+      
             <h3>{article.topic}</h3>
             <h3>{article.title}</h3>
             <h3>{article.author}</h3>
             <p>{article.body}</p>
+            
+           
             <section className="article_page_comments">
                 
                 <ul>
                 {comments.map((comment) => {
-                    <li type="none"><CommentCard comment={comment}/></li>
-                })}
+
+                    console.log(comment)
+                    return(
+                    <li type="none" key={comment.comment_id}><CommentCard comment={comment}/></li>
+                )})}
                 </ul>
 
 
             </section>
+            </section> 
         </>
     );
 }
