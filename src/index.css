@@ -1,0 +1,56 @@
+html{
+    margin: 0;
+}
+
+body {
+    min-height: 100vh;
+    margin: 0;
+    font-family: "Yantramanav", sans-serif;
+    background-color: #11171C;
+    color: white;
+}
+
+#nav_container{
+    background-color: red;
+    display: flex;
+}
+
+#logo_container {
+    margin: 5px;
+    display: flex;
+    padding: 5px;
+    border: 5px solid;
+    border-radius: 5px;
+}
+
+.logo_text{
+    font-size: 16px;
+    margin: 0;
+}
+
+.hamburger{
+    width: 2rem;
+    height: 2rem;
+    display: flex;
+    justify-content: space-around;
+    flex-flow: column nowrap;
+    z-index: 10;
+}
+
+.burger{
+    width: 2rem;
+    height:0.5rem;
+    border-radius: 10px;
+    background-color: black;
+    transform-origin: 1px;
+    transition: all 0.3s linear;
+}
+
+
+.article_card_container{
+
+    display: flex;
+    color: white;
+    background-color:grey;
+    
+}
