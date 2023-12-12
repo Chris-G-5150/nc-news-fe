@@ -1,5 +1,5 @@
 import axios from "axios";
-import {useState } from "react";
+import { useState } from "react";
 
 export default function ArticleVotes({ article }) {
     const [votes, setVotes] = useState(article.votes);
