@@ -1,6 +1,5 @@
 import { Route, Routes } from "react-router-dom";
 import ArticleList from "./ArticleList";
-import ArticlesPage from "./ArticlePage";
 import ArticlePage from "./ArticlePage";
 
 export default function ContentWindow() {
@@ -10,9 +9,12 @@ export default function ContentWindow() {
             <section id="routes">
                 <Routes>
                     <Route path="/articles" element={<ArticleList />} />
-                    <Route path="/articles/:article_id" element={<ArticlePage />}/>
+                    <Route
+                        path="/articles/:article_id"
+                        element={<ArticlePage />}
+                    />
                 </Routes>
-            </section> 
+            </section>
         </div>
     );
 }

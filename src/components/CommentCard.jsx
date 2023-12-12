@@ -1,4 +1,10 @@
+import CommentVotes from "./ArticleVotes"
+
+
+
+
 export default function CommentCard({comment}) {
+
 
     return (
         <>
