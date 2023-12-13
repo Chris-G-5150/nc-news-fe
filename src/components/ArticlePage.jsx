@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import CommentCard from "./CommentCard";
 import ArticleVotes from "./ArticleVotes";
+import PostComment from "./Forms/PostComment";
 
 export default function ArticlePage() {
     const [article, setArticle] = useState({});
@@ -31,44 +32,47 @@ export default function ArticlePage() {
                 return response.data;
             })
             .then((data) => {
-                setComments(data.commentsOnArticles)
-                setCommentsStatus(false)
+                setComments(data.commentsOnArticles);
+                setCommentsStatus(false);
             });
     }, []);
+
+    useEffect(() => {
+        axios.post;
+    });
 
     if (isLoading) {
         return <p>Loading</p>;
     }
-    if (commentsStatus){return (<p>Fetching data</p>)}
-
-
+    if (commentsStatus) {
+        return <p>Fetching data</p>;
+    }
 
     return (
         <>
-        <section className="article_page_container">
-            
-            <img src={article.article_img_url} alt="article image" />
-      
-            <h3>{article.topic}</h3>
-            <h3>{article.title}</h3>
-            <h3>{article.author}</h3>
-            <ArticleVotes article={article}/>
-            <p>{article.body}</p>
-            
-           
-            <section className="article_page_comments">
-                <ul>
+            <section className="article_page_container">
+                <img src={article.article_img_url} alt="article image" />
 
-                    {comments.map((comment) => {
-                        return(
-                        <li type="none" key={comment.comment_id}>
-                           
-                            <CommentCard comment={comment} />
-                        </li>)
-                    })}
-                </ul>
+                <h3>{article.topic}</h3>
+                <h3>{article.title}</h3>
+                <h3>{article.author}</h3>
+                <ArticleVotes article={article} />
+                <p>{article.body}</p>
+
+                <section className="article_page_comments">
+                    <PostComment article_id={article.article_id} />
+
+                    <ul>
+                        {comments.map((comment) => {
+                            return (
+                                <li type="none" key={comment.comment_id}>
+                                    <CommentCard comment={comment} />
+                                </li>
+                            );
+                        })}
+                    </ul>
+                </section>
             </section>
-            </section> 
         </>
     );
 }
