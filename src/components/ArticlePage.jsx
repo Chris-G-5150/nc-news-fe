@@ -37,10 +37,6 @@ export default function ArticlePage() {
             });
     }, []);
 
-    useEffect(() => {
-        axios.post;
-    });
-
     if (isLoading) {
         return <p>Loading</p>;
     }
