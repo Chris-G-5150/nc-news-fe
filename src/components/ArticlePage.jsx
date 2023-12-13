@@ -45,14 +45,20 @@ export default function ArticlePage() {
 
     return (
         <>
+        <section className="article_page_container">
+            
             <img src={article.article_img_url} alt="article image" />
+      
             <h3>{article.topic}</h3>
             <h3>{article.title}</h3>
             <h3>{article.author}</h3>
             <ArticleVotes article={article}/>
             <p>{article.body}</p>
+            
+           
             <section className="article_page_comments">
                 <ul>
+
                     {comments.map((comment) => {
                         return(
                         <li type="none" key={comment.comment_id}>
@@ -62,6 +68,7 @@ export default function ArticlePage() {
                     })}
                 </ul>
             </section>
+            </section> 
         </>
     );
 }
