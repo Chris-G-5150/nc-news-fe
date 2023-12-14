@@ -4,9 +4,12 @@ import { useParams } from "react-router-dom";
 import ArticleVotes from "./ArticleVotes";
 import ArticleComments from "./ArticleComments";
 
+
+
 export default function ArticlePage() {
     const [article, setArticle] = useState({});
     const [isLoading, setIsLoading] = useState(true);
+
 
     const { article_id } = useParams();
 
@@ -35,7 +38,7 @@ export default function ArticlePage() {
             <h3>{article.author}</h3>
             <ArticleVotes article={article} />
             <p>{article.body}</p>
-            <ArticleComments article_id={article_id} />
+            <ArticleComments article_id={article_id}/>
         </section>
     );
 }

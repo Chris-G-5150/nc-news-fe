@@ -3,7 +3,7 @@ import { userContext } from "../Context/UserProvider";
 import CommentCard from "./CommentCard";
 import axios from "axios";
 import ErrorPopup from "./ErrorPopup";
-import NotificationPopup from "./NotificationWindow";
+import NotificationPopup from "./NotificationPopup";
 
 export default function ArticleComments({ article_id }) {
     const [commentsStatus, setCommentsStatus] = useState(true);
@@ -13,6 +13,13 @@ export default function ArticleComments({ article_id }) {
     const [comment, setComment] = useState("");
     const [comments, setComments] = useState([]);
     const [notificationStatus, setNotificationStatus] = useState(null);
+    const [deleteCommentErrStatus, setDeleteCommentErrStatus] = useState(null);
+
+
+    // function removeComment(commentArray){
+
+
+    // }
 
     useEffect(() => {
         axios
@@ -51,7 +58,7 @@ export default function ArticleComments({ article_id }) {
                     console.log(response.data);
                 })
                 .then(() => {
-                    setNotificationStatus(true);
+                    setNotificationStatus("comment posted");
                     setComments((currComments) => {
                         const contextRender = {
                             author: user.username,
@@ -67,6 +74,25 @@ export default function ArticleComments({ article_id }) {
         }
     }
 
+    function handleDelete(comment_id) {
+        axios
+            .delete(
+                `https://nc-news-u90o.onrender.com/api/comments/${comment_id}`
+            )
+            .then(() => {
+                setNotificationStatus("comment deleted")
+                setComments((currComments) => {
+                    return currComments.filter((commentIdChecked) => {
+                        return comment_id !== commentIdChecked.comment_id
+                    })
+                });
+            })
+            .catch((err) => {
+                setDeleteCommentErrStatus(err);
+            });
+
+    }
+
     function notificationHandler() {
         setNotificationStatus(false);
     }
@@ -77,6 +103,9 @@ export default function ArticleComments({ article_id }) {
 
     function postLengthErrHandler() {
         setPostLengthErrStatus(null);
+    }
+    function deleteCommentErrHandler() {
+        setDeleteCommentErrStatus(null);
     }
 
     if (postLengthErrStatus) {
@@ -91,8 +120,17 @@ export default function ArticleComments({ article_id }) {
     if (notificationStatus) {
         return (
             <NotificationPopup
-                status={"comment posted"}
+                status={notificationStatus}
                 onClose={notificationHandler}
+            />
+        );
+    }
+
+    if (deleteCommentErrStatus) {
+        return (
+            <ErrorPopup
+                status={deleteCommentErrStatus}
+                onClose={deleteCommentErrHandler}
             />
         );
     }
@@ -138,7 +176,10 @@ export default function ArticleComments({ article_id }) {
                     {comments.map((commentsMapped) => {
                         return (
                             <li type="none" key={commentsMapped.comment_id}>
-                                <CommentCard comment={commentsMapped} />
+                                <CommentCard
+                                    comment={commentsMapped}
+                                    handleDelete={handleDelete}
+                                />
                             </li>
                         );
                     })}
