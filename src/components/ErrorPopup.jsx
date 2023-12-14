@@ -1,4 +1,4 @@
-import "./CSS/ErrorPopup.css"
+import "./CSS/Popup.css"
 
 export default function ErrorPopup({errStatus, onClose}){
     return(
