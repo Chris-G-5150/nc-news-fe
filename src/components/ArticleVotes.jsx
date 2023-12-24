@@ -1,6 +1,7 @@
 import axios from "axios";
 import { useState } from "react";
 import ErrorPopup from "./ErrorPopup";
+import "./CSS/ArticleVotes.css"
 
 
 export default function ArticleVotes({ article }) {
@@ -36,7 +37,7 @@ export default function ArticleVotes({ article }) {
 
     return (
         <div className="article_votes_container">
-            <p>Vote count {votes}</p>
+            <p>Votes: {votes}</p>
             <button onClick={handleVoteUp}>+</button>
         </div>
     );

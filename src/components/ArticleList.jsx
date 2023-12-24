@@ -2,13 +2,16 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import ArticleCard from "./ArticleCard";
 
+import "./CSS/ArticleList.css"
+import LoadingScreen from "./LoadingScreen";
+
 export default function ArticleList() {
     const [articleList, setArticleList] = useState([]);
     const [isLoading, setIsLoading] = useState(true);
 
     useEffect(() => {
         axios
-            .get("https://nc-news-u90o.onrender.com/api/articles/")
+            .get("https://nc-news-u90o.onrender.com/api/articles")
             .then((response) => {
                 return response.data;
             })
@@ -19,12 +22,13 @@ export default function ArticleList() {
     }, []);
 
     if (isLoading) {
-        return <h1>Loading</h1>;
+        return <LoadingScreen/>;
     }
 
     return (
         <>
-            <ul>
+       
+            <ul className="article_card_list">
                 {articleList.map((article) => {
                     return (
                         <li type="none" key={article.article_id}>
@@ -33,6 +37,8 @@ export default function ArticleList() {
                     );
                 })}
             </ul>
+
+        
         </>
     );
 }

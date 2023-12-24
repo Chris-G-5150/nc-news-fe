@@ -1,0 +1,53 @@
+.comment_card_container{
+    background-color: #424242;
+    border-radius: 2.5px;
+    margin-top: 10px;
+    border: solid 2px #eaeaea;
+    border-radius: 5px;
+    display:grid;
+    grid-template-rows: 0.25fr 1fr 0.25fr;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    height: auto;
+}
+
+
+
+.comment_card_author{
+    margin-left: 5px;
+    height: auto;
+    grid-column-start: 1;
+    grid-column-end: 2;
+    grid-row-start: 1;
+    grid-row-end: 2;
+    
+}
+
+.comment_card_votes{
+    height: auto;
+    grid-column-start: 2;
+    grid-column-end: 3;
+    grid-row-start: 1;
+    grid-row-end: 2;
+    
+}
+
+.comment_card_button{
+
+    text-align: center;
+    grid-column-start: 1;
+    grid-column-end: 3;
+    grid-row-start: 3;
+    grid-row-end: 4;
+
+}
+
+.comment_card_body{
+    padding: 5px;
+    grid-column-start: 1;
+    grid-column-end: 3;
+    grid-row-start: 2;
+    grid-row-end: 3;
+
+}
+

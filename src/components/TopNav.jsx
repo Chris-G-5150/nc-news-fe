@@ -1,25 +1,37 @@
 import { Link } from "react-router-dom";
 import { userContext } from "../Context/UserProvider";
 import { useContext } from "react";
+import "./CSS/TopNav.css"
 
-export default function Navbar() {
+
+export default function TopNav() {
     const { user, setUser } = useContext(userContext);
 
+
+
+
+
+    console.log(user)
+
     return (
-        <nav>
-            <nav id="nav_container">
+        
+        <nav id="nav_container">
+
+
+          
                 <div id="logo_container">
+                <Link to={'/'}>
                     <h1 className="logo_text">TOWN SQUARE</h1>
-                </div>
-                <div className="nav_links_container">
-                    <Link to={"/articles"}>ARTICLES</Link>
+                    </Link>
                 </div>
 
-                <div className="nav_logged_in_as_container">
-                    <p>Logged in as</p>
-                    <p>{user.username}</p>
+
+                
+                
+                <div className="nav_logged_in_container">
+                    <p>{user.username.toUpperCase()}</p>
                 </div>
             </nav>
-        </nav>
+        
     );
 }

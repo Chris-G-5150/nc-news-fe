@@ -3,7 +3,10 @@ import { userContext } from "../Context/UserProvider";
 import CommentCard from "./CommentCard";
 import axios from "axios";
 import ErrorPopup from "./ErrorPopup";
+
 import NotificationPopup from "./NotificationPopup";
+import "./CSS/ArticleComments.css"
+import LoadingScreen from "./LoadingScreen";
 
 export default function ArticleComments({ article_id }) {
     const [commentsStatus, setCommentsStatus] = useState(true);
@@ -14,12 +17,9 @@ export default function ArticleComments({ article_id }) {
     const [comments, setComments] = useState([]);
     const [notificationStatus, setNotificationStatus] = useState(null);
     const [deleteCommentErrStatus, setDeleteCommentErrStatus] = useState(null);
+    const [postButtonStatus, setPostButtonStatus] = useState(false);
 
 
-    // function removeComment(commentArray){
-
-
-    // }
 
     useEffect(() => {
         axios
@@ -40,6 +40,7 @@ export default function ArticleComments({ article_id }) {
 
     function handleSubmit(event) {
         event.preventDefault();
+        setPostButtonStatus(true);
         console.log(comment.length);
         if (comment.length < 3) {
             setPostLengthErrStatus(true);
@@ -80,17 +81,16 @@ export default function ArticleComments({ article_id }) {
                 `https://nc-news-u90o.onrender.com/api/comments/${comment_id}`
             )
             .then(() => {
-                setNotificationStatus("comment deleted")
+                setNotificationStatus("comment deleted");
                 setComments((currComments) => {
                     return currComments.filter((commentIdChecked) => {
-                        return comment_id !== commentIdChecked.comment_id
-                    })
+                        return comment_id !== commentIdChecked.comment_id;
+                    });
                 });
             })
             .catch((err) => {
                 setDeleteCommentErrStatus(err);
             });
-
     }
 
     function notificationHandler() {
@@ -106,6 +106,9 @@ export default function ArticleComments({ article_id }) {
     }
     function deleteCommentErrHandler() {
         setDeleteCommentErrStatus(null);
+    }
+    function disabledButton() {
+        setPostButtonStatus("disabled");
     }
 
     if (postLengthErrStatus) {
@@ -151,7 +154,7 @@ export default function ArticleComments({ article_id }) {
             <>
                 <section className="post_comment_container">
                     <form className="post_comment_form" onSubmit={handleSubmit}>
-                        <div className="post_comment_labels_container">
+                       
                             <label htmlFor="body">
                                 Post comment:<br></br>
                                 <input
@@ -161,17 +164,18 @@ export default function ArticleComments({ article_id }) {
                                     value={comment.body}
                                     onChange={handleChange}
                                 />
-                            </label>
+                            </label><br></br>
                             <button
                                 className="post_comment_submit_button"
                                 onClick={handleSubmit}
-                            >
+                                disabled={postButtonStatus}
+                            >   
                                 Submit
                             </button>
-                        </div>
+                           
                     </form>
                 </section>
-                <section className="article_comments_list_container"></section>
+                <section className="article_comments_list_container">
                 <ul>
                     {comments.map((commentsMapped) => {
                         return (
@@ -184,6 +188,7 @@ export default function ArticleComments({ article_id }) {
                         );
                     })}
                 </ul>
+                </section>
             </>
         );
     }
