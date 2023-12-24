@@ -1,0 +1,30 @@
+.home_page_heading{
+    margin-left: 10px;
+}
+
+.home_page_grid_container{
+    margin: auto;
+    width: 100%;
+    display: grid; 
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 1fr ;
+}
+
+.home_page_hero_article_container{
+    grid-column-start: 1;
+    grid-column-end: 3;
+    grid-row-start: 1;
+    grid-row-end: 3;    
+}
+
+.article_card_title_container{
+    display:flex;
+    align-items: flex-end;
+    grid-column-start: 1;
+    grid-column-end: 3;
+    grid-row-start: 2;
+    grid-row-end: 3;    
+    text-shadow: 1px 1px 5px black;
+    margin-left: 10px;
+}
+

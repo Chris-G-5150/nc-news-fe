@@ -1,0 +1,35 @@
+#nav_container {
+    background-color:#181818;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr ;
+    grid-template-rows: 1fr
+}
+
+#logo_container {
+    margin-left: 1rem;
+    font-size: 16px;
+    grid-column-start: 1;
+    grid-column-end: 4;
+    grid-row-start:1 ;
+    grid-row-end: 2;
+}
+
+.nav_user_avatar_container{
+
+    
+}
+
+.nav_logged_in_container{
+    display:flex;
+    text-align: center;
+    flex-direction: column ;
+    justify-content: center;
+    grid-column-start: 4;
+    grid-column-end: 5;
+    grid-row-start:1 ;
+    grid-row-end: 2;
+    font-weight: 900;
+    margin-right: 1rem;
+}
+
+
